@@ -35,10 +35,11 @@ def main():
     while True:
         try:
             players_count = get_player_count()
-            players_counts.append(players_count)
             logger.info(f'Players Count: {players_count}')
         except Exception as e:
             logger.error("Get Player Count: Unable to connect to server.")
+            players_count = 1
+        players_counts.append(players_count)
         if not any(players_counts[-timeout:]):
             logger.info(f"Shutting down as server is empty in last {timeout} checks.")
             try:
